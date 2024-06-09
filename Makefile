@@ -7,17 +7,17 @@ all: build
 # Target to call build.sh
 build:
 	@echo "Running build.sh..."
-	@./build.sh
+	@./scripts/build.sh
 
 # Target to call clean.sh
 clean:
 	@echo "Running clean.sh..."
-	@./clean.sh
+	@./scripts/clean.sh
 
 # Target to call cmake_build.sh
 cmake_build:
 	@echo "Running cmake_build.sh..."
-	@./cmake_build.sh
+	@./scripts/cmake_build.sh
 
 # A target to run all scripts in sequence
 run_all: clean build cmake_build
