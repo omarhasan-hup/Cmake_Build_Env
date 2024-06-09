@@ -1,0 +1,3 @@
+/media/omar/Local Disk/repoes/cmake_project/build_env/CMakeFiles/final.dir
+/media/omar/Local Disk/repoes/cmake_project/build_env/CMakeFiles/edit_cache.dir
+/media/omar/Local Disk/repoes/cmake_project/build_env/CMakeFiles/rebuild_cache.dir

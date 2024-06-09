@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/final.dir/src_code/SWC_one/SWC_one.c.o CMakeFiles/final.dir/src_code/SWC_two/SWC_two.c.o CMakeFiles/final.dir/src_code/main.c.o -o final 
