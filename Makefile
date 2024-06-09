@@ -20,7 +20,7 @@ cmake_build:
 	@./scripts/cmake_build.sh
 
 # A target to run all scripts in sequence
-run_all: clean build cmake_build
+rebuild: clean  cmake_build build
 
 Exe:
 	@echo "Running final excuatable..."
