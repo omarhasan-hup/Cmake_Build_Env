@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.10)
 message("Reached here after the version check")
 project(cmake_project )
 message("Reached the project name")
