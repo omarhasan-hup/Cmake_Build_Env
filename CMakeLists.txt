@@ -6,6 +6,7 @@ message("Reached the project name")
 # Add include directories
 include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_one)
 include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_two)
+include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_three)
 
 # Add source files using glob patterns
 file(GLOB_RECURSE SOURCES "src_code/*.c")
