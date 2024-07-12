@@ -1,2 +1,3 @@
 #untrack the bewlo directory as it is the build env directory 
 build_env/*
+Build_lgs/*
