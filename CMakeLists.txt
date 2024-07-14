@@ -4,7 +4,9 @@ cmake_minimum_required(VERSION 3.10)
 include(avr.cmake)
 
 # Target-specific settings
-add_definitions(-mmcu=atmega16)
+add_definitions(-mmcu=atmega16 -Os)
+# Define F_CPU based on your crystal frequency
+add_definitions(-DF_CPU=16000000L)  # Replace 16000000L with your actual frequency
 
 message("The compiler path gcc is : ${CMAKE_C_COMPILER}")
 message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")
@@ -39,6 +41,12 @@ message("Reached the project name")
 # Add the main source file
 add_executable(final
 src_code/main.c
+)
+
+# Set output formats
+set_target_properties(final PROPERTIES
+    SUFFIX ".hex"
+    LINK_FLAGS "-Wl,-Map=final.map"
 )
 
 # # Add subdirectories containing SWC CMakeLists.txt files
