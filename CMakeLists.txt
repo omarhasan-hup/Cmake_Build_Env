@@ -5,8 +5,6 @@ include(avr.cmake)
 
 # Target-specific settings
 add_definitions(-mmcu=atmega16 -Os)
-# Define F_CPU based on your crystal frequency
-add_definitions(-DF_CPU=16000000L)  # Replace 16000000L with your actual frequency
 
 message("The compiler path gcc is : ${CMAKE_C_COMPILER}")
 message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")

@@ -18,7 +18,14 @@ Diag_print:
 # Target to call build.sh
 build:
 	@echo "navigate to build env directory"
-	cd $(DIR)/ && make all final_elf | tee -a $(Build_lgs)/Build_log.txt 
+	cd $(DIR)/ && make all | tee -a $(Build_lgs)/Build_log.txt 
+	@echo "                                                " >> $(Build_lgs)/Build_log.txt
+	@echo "*************End OF build process***************" >> $(Build_lgs)/Build_log.txt
+	@echo "                                                " >> $(Build_lgs)/Build_log.txt
+	cd $(DIR)/ && make final_elf | tee -a $(Build_lgs)/Build_log.txt 
+	@echo "                                                " >> $(Build_lgs)/Build_log.txt
+	@echo "*************End OF ELF generation***************" >> $(Build_lgs)/Build_log.txt
+	@echo "                                                " >> $(Build_lgs)/Build_log.txt
 #navigate to the build dir then run make all and make the target final_elf to generate the elf file and all of this is being logged in the Build_log.txt 
 	@echo "The .out sahll be creted"
 

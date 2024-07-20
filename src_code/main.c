@@ -12,13 +12,14 @@
 
 /*****************************************Cross compilation main.c**************************************************************/ 
 
+#define F_CPU 1000000L
+
+
 #include <avr/io.h>
 #include <util/delay.h>
-
 int main(void)
 {
 	DDRC  = 0xFF;	// Configure all PORTC pins as output pins
-	PORTC = 0x01;   // First led is on at the beginning (Positive Logic configuration)
 
 	while(1)
 	{
