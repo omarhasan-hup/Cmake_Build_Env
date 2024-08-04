@@ -22,7 +22,7 @@ build:
 	@echo "                                                " >> $(Build_lgs)/Build_log.txt
 	@echo "*************End OF build process***************" >> $(Build_lgs)/Build_log.txt
 	@echo "                                                " >> $(Build_lgs)/Build_log.txt
-	cd $(DIR)/ && make final_elf | tee -a $(Build_lgs)/Build_log.txt 
+	cd $(DIR)/ | tee -a $(Build_lgs)/Build_log.txt 
 	@echo "                                                " >> $(Build_lgs)/Build_log.txt
 	@echo "*************End OF ELF generation***************" >> $(Build_lgs)/Build_log.txt
 	@echo "                                                " >> $(Build_lgs)/Build_log.txt

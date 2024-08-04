@@ -16,30 +16,17 @@ message("Reached here after the version check")
 project(cmake_project )
 message("Reached the project name")
 
-####################################################################################################################
+
 # Add include directories
-# include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_one)
-# include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_two)
-# include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_three)
+include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_one)
 
 # Add source files using glob patterns
-# file(GLOB_RECURSE SOURCES "src_code/*.c")
+file(GLOB_RECURSE SOURCES "src_code/*.c")
+
 
 # Add the executable target and include the source files
-# add_executable(final ${SOURCES})
-
-# add_executable(final src_code/main.c src_code/SWC_one/SWC_one.c)
-####################################################################################################################
-# Add include directories
-# include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_one)
-# include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_two)
-# include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_three)
-
-
-# Add the main source file
-add_executable(final
-src_code/main.c
-)
+add_executable(final ${SOURCES})
+add_subdirectory(src_code/SWC_one)
 
 # Set output formats to generate hex file from the obj
 set_target_properties(final PROPERTIES
@@ -49,26 +36,15 @@ set_target_properties(final PROPERTIES
 )
 
 # Add a custom target for ELF generation
-add_custom_target(final_elf
-    COMMAND ${CMAKE_C_COMPILER} -mmcu=atmega16 -Wl,-Map=final.map -o final.elf CMakeFiles/final.dir/src_code/main.c.obj
-    DEPENDS final
-    COMMENT "Generating ELF file..."
-    VERBATIM
-)
-
-
-# # Add subdirectories containing SWC CMakeLists.txt files
-# add_subdirectory(src_code/SWC_one)
-# add_subdirectory(src_code/SWC_two)
-# add_subdirectory(src_code/SWC_three)
-
-# Link the SWCs with the main executable
-# target_link_libraries(final
-# SWC_one
-# SWC_two
-# SWC_three
+# add_custom_target(final_elf
+#     COMMAND ${CMAKE_C_COMPILER} -mmcu=atmega16 -Wl,-Map=final.map -o final.elf CMakeFiles/final.dir/src_code/main.c.obj
+#     DEPENDS final
+#     COMMENT "Generating ELF file..."
+#     VERBATIM
 # )
 
 
+
 #The below line is very risky specially the Tdata part it gives the begging the .data section addresse 
-target_link_libraries(final -Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060)
+target_link_libraries(final -Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060) 
+# target_link_libraries(final_elf SWC_one -Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060)
