@@ -17,11 +17,12 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "SWC_one.h"
+#include "SWC_two.h"
 
 int main(void)
 {
-	DDRC = 0xFF; // Configure all PORTC pins as output pins
-	/*Call the empty function from the SWC_One*/
+	
+	(void)set_port_two();
 
 	while (1)
 	{

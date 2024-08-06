@@ -19,6 +19,7 @@ message("Reached the project name")
 
 # Add include directories
 include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_one)
+include_directories(${PROJECT_SOURCE_DIR}/src_code/SWC_two)
 
 # Add source files using glob patterns
 file(GLOB_RECURSE SOURCES "src_code/*.c")
@@ -27,6 +28,7 @@ file(GLOB_RECURSE SOURCES "src_code/*.c")
 # Add the executable target and include the source files
 add_executable(final ${SOURCES})
 add_subdirectory(src_code/SWC_one)
+add_subdirectory(src_code/SWC_two)
 
 # Set output formats to generate hex file from the obj
 set_target_properties(final PROPERTIES
