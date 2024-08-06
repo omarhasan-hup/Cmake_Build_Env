@@ -1,2 +1,2 @@
 #include<stdio.h>
-void print_func_two(void);
+void set_port_two(void);
