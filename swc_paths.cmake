@@ -1,0 +1,5 @@
+#THIS .cmake will contain any relative paths will be used in this repo 
+
+set(main "${PROJECT_SOURCE_DIR}/src_code/main.c")
+set(SWC_one "${PROJECT_SOURCE_DIR}/src_code/SWC_one")
+set(SWC_two "${PROJECT_SOURCE_DIR}/src_code/SWC_two")
