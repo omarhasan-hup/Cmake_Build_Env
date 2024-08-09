@@ -80,10 +80,15 @@ add_subdirectory(${SWC_two})
 target_link_libraries(final SWC_one SWC_two -Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060)
 
 # Set output formats to generate hex file from the obj
-set_target_properties(final PROPERTIES
-    SUFFIX ".hex"
-    LINK_FLAGS "-Wl,-Map=final.map"
-    COMMENT "Generating HEX file..."
+# set_target_properties(final PROPERTIES
+#     SUFFIX ".hex"
+#     LINK_FLAGS "-Wl,-Map=final.map"
+#     COMMENT "Generating HEX file..."
+# )
+add_custom_target(final_hex
+    COMMAND ${AVR_OBJCOPY} -O ihex final.elf final.hex 
+    DEPENDS final # Ensure the 'final' target is built first
+    COMMENT "Generating HEX file using avr-objcopy..."
 )
 
 # Add a custom target for ELF generation
