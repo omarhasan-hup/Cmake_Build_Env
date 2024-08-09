@@ -2,6 +2,6 @@ This Folder is a Comuncation way betwen multi-machines to list the todo lists
 
 1) In the current branch : 
 
-Hex is not working on the simulation 
+Hex is not working on the simulation =====> Solved El7amdllah ✅
 ELF File need to be More generic 
 the target link need to be more generic too 
