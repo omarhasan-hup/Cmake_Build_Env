@@ -73,11 +73,20 @@ add_subdirectory(${SWC_one})
 add_subdirectory(${SWC_two})
 
 
+# Here will be listed all the SWCs which will be linked in just one cmake variable to be used easliy 
+set(Linked_SWcs SWC_one SWC_two)
+
+
 
 #The below line is very risky specially the Tdata part it gives the begging the .data section addresse 
 #This line is crucial for linking your executable to the static libraries you've created for your AVR project and for influencing the memory layout of your program.
 # the command instructs CMake to link the final executable with the SWC_one and SWC_two static libraries. CMake will handle the details of finding the libraries and ensuring they are linked in the correct order during the build process.
-target_link_libraries(final SWC_one SWC_two -Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060)
+# the below line will set all the required liner flags to be used during linking stage 
+set_target_properties(final PROPERTIES
+    LINK_FLAGS "-Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060"
+)
+#The line below will list all the SWCs which willbe linked staticly to the final generated 
+target_link_libraries(final ${Linked_SWcs})
 
 # Set output formats to generate hex file from the obj
 # set_target_properties(final PROPERTIES
@@ -97,7 +106,7 @@ add_custom_target(final_elf
     COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_OBJECTS:final> $<TARGET_OBJECTS:SWC_one> $<TARGET_OBJECTS:SWC_two>" > "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt"
     COMMAND sed -i "s/;/ /g" "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt" # Correctly quoted sed command
     COMMAND ${CMAKE_C_COMPILER} -mmcu=atmega16 -Wl,-Map=final.map -o final.elf  @${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt 
-    DEPENDS final SWC_one SWC_two 
+    DEPENDS final ${Linked_SWcs} 
     COMMENT "Generating ELF file..."
     VERBATIM
 )
