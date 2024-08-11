@@ -5,3 +5,9 @@ This Folder is a Comuncation way betwen multi-machines to list the todo lists
 Hex is not working on the simulation =====> Solved El7amdllah ✅
 ELF File need to be More generic 
 the target link need to be more generic too 
+Make linking a new SWC o be eazy as the person will have to do the following steps 
+        1) Add the SWC path to the SWC_paths.cmake file
+        2) addsubirectory (SWCName) in the main cmakelists to be linked as a static liberary with the final exe file 
+        3) Add the (SWC_name) to the API =>target_link_libraries(final SWC_one SWC_two (SWC_Name) -Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060)
+        4) Add the SWC_libs directory to the linking of the elf file as this :
+            COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_OBJECTS:final> $<TARGET_OBJECTS:SWC_one> $<TARGET_OBJECTS:SWC_two> $<TARGET_OBJECTS:SWC_NAME>" > "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt"
