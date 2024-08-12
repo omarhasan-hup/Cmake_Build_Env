@@ -1,6 +1,8 @@
 This Folder is a Comuncation way betwen multi-machines to list the todo lists 
 
-1) In the current branch : 
+1) Add how to build in the README file : make clean ; make cmake_build; make build 
+
+2) In the current branch : 
 
 Hex is not working on the simulation =====> Solved El7amdllah ✅
 ELF File need to be More generic 
