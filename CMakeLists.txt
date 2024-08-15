@@ -1,6 +1,27 @@
 #This is the command telling CMake to enforce a minimum version requirement.
 cmake_minimum_required(VERSION 3.10)
 
+
+#Define all the possible colors to be used Text colors and background colors 
+set(CMAKE_COLOR_RESET "\\033[0m")
+set(CMAKE_COLOR_BLACK "\\033[30m")
+set(CMAKE_COLOR_RED "\\033[31m")
+set(CMAKE_COLOR_GREEN "\\033[32m")
+set(CMAKE_COLOR_YELLOW "\\033[33m")
+set(CMAKE_COLOR_BLUE "\\033[34m")
+set(CMAKE_COLOR_MAGENTA "\\033[35m")
+set(CMAKE_COLOR_CYAN "\\033[36m")
+set(CMAKE_COLOR_WHITE "\\033[37m")
+
+set(CMAKE_BG_BLACK "\\033[40m")
+set(CMAKE_BG_RED "\\033[41m")
+set(CMAKE_BG_GREEN "\\033[42m")
+set(CMAKE_BG_YELLOW "\\033[43m")
+set(CMAKE_BG_BLUE "\\033[44m")
+set(CMAKE_BG_MAGENTA "\\033[45m")
+set(CMAKE_BG_CYAN "\\033[46m")
+set(CMAKE_BG_WHITE "\\033[47m")
+
 # Print during the Cmake Environemt generation to ensure that the used Cmake is higher than the required minumm "3.10"
 message("Reached here after the version check")
 
@@ -97,17 +118,19 @@ target_link_libraries(final ${Linked_SWcs})
 add_custom_target(final_hex
     COMMAND ${AVR_OBJCOPY} -O ihex final.elf final.hex 
     DEPENDS final # Ensure the 'final' target is built first
-    COMMENT "Generating HEX file using avr-objcopy..."
+    COMMENT "Generating HEX file using avr-objcopy...✅✅✅✅"
 )
 
 # Add a custom target for ELF generation
 add_custom_target(final_elf
+    # COMMAND echo "${CMAKE_COLOR_CYAN}${CMAKE_BG_MAGENTA}START OF ELF FILE Generation 🎉${CMAKE_COLOR_RESET}"
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/tmp" 
     COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_OBJECTS:final> $<TARGET_OBJECTS:SWC_one> $<TARGET_OBJECTS:SWC_two>" > "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt"
     COMMAND sed -i "s/;/ /g" "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt" # Correctly quoted sed command
     COMMAND ${CMAKE_C_COMPILER} -mmcu=atmega16 -Wl,-Map=final.map -o final.elf  @${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt 
     DEPENDS final ${Linked_SWcs} 
-    COMMENT "Generating ELF file..."
+    COMMENT "Generating ELF file...✅✅✅✅✅"
+    # COMMAND echo "${CMAKE_COLOR_CYAN}${CMAKE_BG_MAGENTA}END OF ELF FILE Generation 🎉${CMAKE_COLOR_RESET}"
     VERBATIM
 )
 
