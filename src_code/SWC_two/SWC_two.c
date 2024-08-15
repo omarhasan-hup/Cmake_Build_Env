@@ -1,5 +1,5 @@
 #include"SWC_two.h"
-void print_func_two(void)
+void set_port_two(void)
 {
-    printf("This is the SWC_two print>>>>>>>>>>>>>> \r\n");
+    DDRC = 0xFF; // Configure all PORTC pins as output pins
 }
