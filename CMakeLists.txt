@@ -69,6 +69,7 @@ message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")
 # This is a CMake command that adds directories to the compiler's search path for include files. When your code has a line like #include "some_header.h", the compiler will search in these specified directories to find 
 include_directories(${SWC_one})
 include_directories(${SWC_two})
+include_directories(${Model})
 
 # Fast Soluation to be used to list all the .c files in the SW to be built if this is wanted to be done 
 #file(...): This is the general CMake command for performing file system operations.
@@ -92,10 +93,11 @@ add_executable(final ${main})
 #(2) Subproject Processing: If found, CMake will process the CMakeLists.txt file in that subdirectory as if it were a separate CMake project. This allows you to define targets (executables, libraries), set compiler flags, include directories, and perform other CMake operations specific to that subdirectory.
 add_subdirectory(${SWC_one})
 add_subdirectory(${SWC_two})
+add_subdirectory(${Model})
 
 
 # Here will be listed all the SWCs which will be linked in just one cmake variable to be used easliy 
-set(Linked_SWcs SWC_one SWC_two)
+set(Linked_SWcs SWC_one SWC_two Model)
 
 
 
@@ -125,7 +127,7 @@ add_custom_target(final_hex
 add_custom_target(final_elf
     # COMMAND echo "${CMAKE_COLOR_CYAN}${CMAKE_BG_MAGENTA}START OF ELF FILE Generation 🎉${CMAKE_COLOR_RESET}"
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/tmp" 
-    COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_OBJECTS:final> $<TARGET_OBJECTS:SWC_one> $<TARGET_OBJECTS:SWC_two>" > "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt"
+    COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_OBJECTS:final> $<TARGET_OBJECTS:SWC_one> $<TARGET_OBJECTS:SWC_two> $<TARGET_OBJECTS:Model>" > "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt"
     COMMAND sed -i "s/;/ /g" "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt" # Correctly quoted sed command
     COMMAND ${CMAKE_C_COMPILER} -mmcu=atmega16 -Wl,-Map=final.map -o final.elf  @${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt 
     DEPENDS final ${Linked_SWcs} 
