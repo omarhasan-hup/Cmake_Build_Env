@@ -13,3 +13,19 @@ Make linking a new SWC o be eazy as the person will have to do the following ste
         3) Add the (SWC_name) to the API =>target_link_libraries(final SWC_one SWC_two (SWC_Name) -Wl,-Ttext=0x0000 -Wl,-Tdata=0x800060)
         4) Add the SWC_libs directory to the linking of the elf file as this :
             COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_OBJECTS:final> $<TARGET_OBJECTS:SWC_one> $<TARGET_OBJECTS:SWC_two> $<TARGET_OBJECTS:SWC_NAME>" > "${CMAKE_CURRENT_BINARY_DIR}/tmp/object_files.txt"
+
+
+#########################################################################################################################################################
+                                            MODEL_Integration_Notes 
+#########################################################################################################################################################
+The Generated Model using the linking method of {ert.tlc} in the matalb code genertaion System target file are as follows :
+1)Main file which will be named "ert_main.c" which will have an example of how to use the gnegrtaed APIs of intialization then model_step API and at the end model_terminate if needed 
+
+2)Mdel_files=> which will have all the model generetaed files (c&h) which are the real algorizem 
+
+3) Utility files => which are all the commom typedefs cretaed by the model generation and used in the algo 
+
+You coud check out this link "https://www.youtube.com/watch?v=LAcnV_5GruY&list=PLn8PRpmsu08ozM3WPN_VuoZQn6uzOrB9p&index=3" For fast recap 
+
+
+
