@@ -35,6 +35,9 @@ DIR := $(mkfile_dir)/build_env
 # Set the build lgs dir to be in the main dir then navigate to the build_lgs
 Build_lgs :=$(mkfile_dir)/build_lgs
 
+Model_SOURCE_DIR := $(mkfile_dir)Simulink_Model_sorce/Source_Model/Controller_ert_rtw/
+
+Model_DEST_DIR := $(mkfile_dir)src_code/Model/Gen_Model
 
 Diag_print:
 	@echo "Makefile Path: $(mkfile_path)"
@@ -95,3 +98,21 @@ Exe:
 	@ls -l $(DIR)/final
 	@$(DIR)/final || echo "Error executing final executable"
 
+
+
+
+# FILES := $(shell find $(Model_SOURCE_DIR) -type f \( -name "*.c" -o -name "*.h" \))
+FILES := $(shell find $(Model_SOURCE_DIR) -type f \( -name "*.c" -o -name "*.h" \) -printf "%P\n")
+
+Model_clean:
+
+	@find $(Model_DEST_DIR) -type f \( -name "*.c" -o -name "*.h" \) -exec rm -f {} \;
+	@echo "Removed old .c and .h files from $(Model_DEST_DIR)"
+
+
+Model_copy:
+	@mkdir -p $(Model_DEST_DIR)
+	@for file in $(FILES); do \
+		cp $(Model_SOURCE_DIR)/$$file $(Model_DEST_DIR)/$$file; \
+	done
+	@echo "Copied .c and .h files from $(Model_SOURCE_DIR) to $(Model_DEST_DIR)"
