@@ -69,7 +69,7 @@ message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")
 # This is a CMake command that adds directories to the compiler's search path for include files. When your code has a line like #include "some_header.h", the compiler will search in these specified directories to find 
 include_directories(${SWC_one})
 include_directories(${SWC_two})
-include_directories(${Gen_Model})
+include_directories(${Model})
 
 # Fast Soluation to be used to list all the .c files in the SW to be built if this is wanted to be done 
 #file(...): This is the general CMake command for performing file system operations.
