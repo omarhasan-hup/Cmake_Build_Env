@@ -11,7 +11,7 @@ MAGENTA = \033[35m
 CYAN = \033[36m
 WHITE = \033[37m
 
-# Background Colors
+# Background Text Colors
 BG_BLACK = \033[40m
 BG_RED = \033[41m
 BG_GREEN = \033[42m
@@ -26,23 +26,33 @@ BOLD = \033[1m
 # Reset Color
 RESET = \033[0m
 
-
+# Environment Variable gets the absolute path of your current Makefile so we could use it as a reference 
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+# Environment Variable to store the main Repo Directory for refernce of any other Dir
 mkfile_dir := $(dir $(mkfile_path))
-# Define the path for the build environment path # Define the directory path as a variable
+#Envronment variable for the Build_env Directory for refernce 
 DIR := $(mkfile_dir)/build_env
 
 # Set the build lgs dir to be in the main dir then navigate to the build_lgs
 Build_lgs :=$(mkfile_dir)/build_lgs
 
+# Set this Environment Variable to be used for the Source Simulink Model files  
 Model_SOURCE_DIR := $(mkfile_dir)Simulink_Model_sorce/Source_Model/Controller_ert_rtw/
 
+# Set this Environment Variable to be used for the Model_Swc and navigte to the genereated data from the Model  
 Model_DEST_DIR := $(mkfile_dir)src_code/Model/Model_gen_data
 
+# Create a Local Environment Variable Holding List of the Newly generated files in the Model Repo 
+FILES := $(shell find $(Model_SOURCE_DIR) -type f \( -name "*.c" -o -name "*.h" \) -printf "%P\n")
+
+# Create a new environment variable excluding ert_main.c from the Variable containg the List of all the generated model files in the model repo 
+FILTERED_FILES := $(filter-out ert_main.c, $(FILES))
+
+
 Diag_print:
-	@echo "Makefile Path: $(mkfile_path)"
+	@echo "Makefile Path     : $(mkfile_path)"
 	@echo "Makefile Directory: $(mkfile_dir)"
-	@echo "DIR is : $(DIR)"
+	@echo "DIR is            : $(DIR)"
 # Target to call build.sh
 #navigate to the build dir then run make all and make the target final_elf to generate the elf file and all of this is being logged in the Build_log.txt 
 build:
@@ -100,10 +110,6 @@ Exe:
 
 
 
-
-# FILES := $(shell find $(Model_SOURCE_DIR) -type f \( -name "*.c" -o -name "*.h" \))
-FILES := $(shell find $(Model_SOURCE_DIR) -type f \( -name "*.c" -o -name "*.h" \) -printf "%P\n")
-
 Model_clean:
 
 	@rm -rf $(Model_DEST_DIR)/*  # Remove everything INSIDE Model_DEST_DIR
@@ -113,6 +119,9 @@ Model_clean:
 Model_copy:
 	@mkdir -p $(Model_DEST_DIR)
 	@echo "Created a new Dir for the Model Gen data "
+	@echo -e  "$(BG_WHITE) $(GREEN) $(BOLD) ####### New Generated Model Files : #############$(RESET)"  
+	@echo -e "$(BOLD)$(MAGENTA)$(FILTERED_FILES)$(RESET)"              # Print the contents of FILES
+	@echo -e "$(BG_WHITE) $(RED) $(BOLD) Do Not forget to Add them to the CMakeLists of the Model $(RESET)"  
 	@for file in $(FILES); do \
 		cp $(Model_SOURCE_DIR)/$$file $(Model_DEST_DIR)/$$file; \
 	done
