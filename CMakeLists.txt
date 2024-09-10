@@ -70,6 +70,7 @@ message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")
 include_directories(${SWC_one})
 include_directories(${SWC_two})
 include_directories(${Model})
+include_directories(${Model_Gen})
 
 # Fast Soluation to be used to list all the .c files in the SW to be built if this is wanted to be done 
 #file(...): This is the general CMake command for performing file system operations.
