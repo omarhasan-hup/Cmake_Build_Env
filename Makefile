@@ -37,7 +37,7 @@ Build_lgs :=$(mkfile_dir)/build_lgs
 
 Model_SOURCE_DIR := $(mkfile_dir)Simulink_Model_sorce/Source_Model/Controller_ert_rtw/
 
-Model_DEST_DIR := $(mkfile_dir)src_code/Model/Gen_Model
+Model_DEST_DIR := $(mkfile_dir)src_code/Model/Model_gen_data
 
 Diag_print:
 	@echo "Makefile Path: $(mkfile_path)"
@@ -106,12 +106,13 @@ FILES := $(shell find $(Model_SOURCE_DIR) -type f \( -name "*.c" -o -name "*.h" 
 
 Model_clean:
 
-	@find $(Model_DEST_DIR) -type f \( -name "*.c" -o -name "*.h" \) -exec rm -f {} \;
+	@rm -rf $(Model_DEST_DIR)/*  # Remove everything INSIDE Model_DEST_DIR
 	@echo "Removed old .c and .h files from $(Model_DEST_DIR)"
 
 
 Model_copy:
 	@mkdir -p $(Model_DEST_DIR)
+	@echo "Created a new Dir for the Model Gen data "
 	@for file in $(FILES); do \
 		cp $(Model_SOURCE_DIR)/$$file $(Model_DEST_DIR)/$$file; \
 	done
