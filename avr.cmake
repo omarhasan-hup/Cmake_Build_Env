@@ -1,4 +1,11 @@
-set(AVR_TOOLCHAIN_PATH /opt/AVR_Tool_Chain/avr8-gnu-toolchain-linux_x86_64)
+# Detect if running within MSYS/MSYS2
+if(CMAKE_HOST_SYSTEM_NAME MATCHES "MSYS|MINGW")
+  message("Building in MSYS/MSYS2 environment - using Windows AVR toolchain")
+  set(AVR_TOOLCHAIN_PATH "/opt/AVR_Tool_Chain/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64") 
+else()
+  message("Building in a non-MSYS environment - using Linux-compatible AVR toolchain")
+  set(AVR_TOOLCHAIN_PATH "/opt/AVR_Tool_Chain/avr8-gnu-toolchain-linux_x86_64")
+endif()
 set(CMAKE_C_COMPILER ${AVR_TOOLCHAIN_PATH}/bin/avr-gcc )
 set(CMAKE_CXX_COMPILER ${AVR_TOOLCHAIN_PATH}/bin/avr-g++)
 set(CMAKE_SYSTEM_NAME Generic)
