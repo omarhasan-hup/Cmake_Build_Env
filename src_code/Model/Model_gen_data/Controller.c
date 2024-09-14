@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Controller'.
  *
- * Model version                  : 1.10
+ * Model version                  : 1.11
  * Simulink Coder version         : 8.14 (R2018a) 06-Feb-2018
- * C/C++ source code generated on : Sun Sep  1 00:48:23 2024
+ * C/C++ source code generated on : Sun Sep 15 00:02:31 2024
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -37,7 +37,7 @@ void Controller_step(RT_MODEL_Controller_T *const Controller_M, uint8_T
    *  Constant: '<S4>/Constant'
    *  UnitDelay: '<S2>/Output'
    */
-  if (Controller_DW->Output_DSTATE > 8) {
+  if (Controller_DW->Output_DSTATE > 9) {
     Controller_DW->Output_DSTATE = 0U;
   }
 
