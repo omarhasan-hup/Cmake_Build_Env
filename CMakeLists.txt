@@ -41,7 +41,7 @@ project(cmake_project )
 include(swc_paths.cmake)
 # Include the toolchain file
 #This is the command in CMake used to incorporate external CMake files into your project which are the Tool chain Cmake for AVR Microcontrollers (Compilers,linker scripts and others)
-include(avr.cmake)
+include(cross_compile_avr/avr.cmake)
 
 # Target-specific settings
 # This is a compiler flag specifically for GCC (GNU Compiler Collection), which is commonly used for AVR development. It tells the compiler that the target microcontroller is an ATmega16. This is crucial because the following :
