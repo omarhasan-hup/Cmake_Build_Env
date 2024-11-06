@@ -64,8 +64,8 @@ message("The compiler path gcc is : ${CMAKE_C_COMPILER}")
 # Print the selected C ++ Compiler path from the AVR toolschain during the Cmake build environemt generation  
 message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")
 
-
-
+# Addin the Cmake Flag "-H" whihc will print a hierarchical list of all the header files included during the compilation process 
+add_compile_options(-H)
 # This is a CMake command that adds directories to the compiler's search path for include files. When your code has a line like #include "some_header.h", the compiler will search in these specified directories to find 
 include_directories(${SWC_one})
 include_directories(${SWC_two})
