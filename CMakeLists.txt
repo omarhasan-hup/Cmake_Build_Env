@@ -66,6 +66,7 @@ message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")
 
 # Addin the Cmake Flag "-H" whihc will print a hierarchical list of all the header files included during the compilation process 
 add_compile_options(-H)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) 
 # This is a CMake command that adds directories to the compiler's search path for include files. When your code has a line like #include "some_header.h", the compiler will search in these specified directories to find 
 include_directories(${SWC_one})
 include_directories(${SWC_two})
