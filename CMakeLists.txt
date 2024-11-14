@@ -41,7 +41,7 @@ project(cmake_project )
 include(swc_paths.cmake)
 # Include the toolchain file
 #This is the command in CMake used to incorporate external CMake files into your project which are the Tool chain Cmake for AVR Microcontrollers (Compilers,linker scripts and others)
-include(avr.cmake)
+include(cross_compile_avr/avr.cmake)
 
 # Target-specific settings
 # This is a compiler flag specifically for GCC (GNU Compiler Collection), which is commonly used for AVR development. It tells the compiler that the target microcontroller is an ATmega16. This is crucial because the following :
@@ -64,8 +64,10 @@ message("The compiler path gcc is : ${CMAKE_C_COMPILER}")
 # Print the selected C ++ Compiler path from the AVR toolschain during the Cmake build environemt generation  
 message("THE c++ COMPILER PATH IS : ${CMAKE_CXX_COMPILER}")
 
-
-
+# Addin the Cmake Flag "-H" whihc will print a hierarchical list of all the header files included during the compilation process 
+add_compile_options(-H)
+#adding the Cmake option CMAKE_EXPORT_COMPILE_COMMANDS to enable the generation of the file compile_commands.json so it will help during the tracing 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) 
 # This is a CMake command that adds directories to the compiler's search path for include files. When your code has a line like #include "some_header.h", the compiler will search in these specified directories to find 
 include_directories(${SWC_one})
 include_directories(${SWC_two})

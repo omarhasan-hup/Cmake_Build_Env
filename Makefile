@@ -101,7 +101,7 @@ cmake_build:
 	@echo -e "$(GREEN)$(BOLD)Done Generating the Build env🎉🎉\n $(RESET)"
 
 # A target to run all scripts in sequence
-rebuild: clean  cmake_build build
+full_build: clean  cmake_build build
 
 Exe:
 	@echo "Running final executable..."
