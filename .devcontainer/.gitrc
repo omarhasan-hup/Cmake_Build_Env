@@ -1,0 +1,30 @@
+# Everyday Git Commands
+# ---------------------
+# git-l will list the log of all branches in a gui format
+alias git-l="git log --oneline --graph --all --decorate"
+# git-reset: will reset all the not staged tracked files
+alias git-reset="git reset --hard HEAD && git submodule foreach --recursive git reset --hard HEAD"
+# git-clean: will clean the untracked files
+alias git-clean="git clean -xfd && git submodule foreach --recursive git clean -xfd"
+# git-tag-update : updates the outdated tags (useful when tags are moved)
+alias git-tag-update="git submodule foreach --recursive 'git tag -l | xargs git tag -d' && git submodule foreach --recursive git fetch --tags"
+# git-update : will sync the urls of the submodules (also will check for new submodules), and will update (pull) the workspace files
+alias git-update="git submodule sync --recursive && git submodule update --recursive --init"
+# for each iterator for the submodules
+alias git-for='git submodule foreach --recursive'
+# git-fetch : fetches all tags and all new changes from remote 
+alias git-fetch='git fetch --all --prune --tags; git-for "git fetch --all --prune --tags"'
+# git-fetch-force-next-master: This will sync the next 
+alias git-fetch-force-next-master='git-for "git checkout --detach; git branch -D master && git fetch origin master:master -f; git branch -D next && git fetch origin next:next -f || echo NO NEXT; echo; echo"'
+
+# Git clean stuck LFS files
+alias git-clean-lfs='git rm --cached -r . && git reset --hard && git rm .gitattributes && git reset . && git checkout .'
+
+# Git Sweep (reset + clean + update)
+alias git-sweep='git-reset && git-clean && git-update'
+
+# Git alias to do the following:Fetch in all the Repo, then checkout Master in main_dev, then pull and sweep, then redo the same thing in 1_Software
+alias git-fps='git-fetch;git checkout Master-Integration -f;git pull origin Master-Integration;git-sweep;cdrs;git checkout Master-Integration -f; git pull origin Master-Integration;git-sweep'
+
+# Git alias to do the following: git into each submodule using (git submodule foraech) and then use git log -1 to show the most recent commit in the submodule
+alias git-log='git-for git log -1'
