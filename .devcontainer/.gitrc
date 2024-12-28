@@ -28,3 +28,4 @@ alias git-fps='git-fetch;git checkout Master-Integration -f;git pull origin Mast
 
 # Git alias to do the following: git into each submodule using (git submodule foraech) and then use git log -1 to show the most recent commit in the submodule
 alias git-log='git-for git log -1'
+alias gst='git status'
