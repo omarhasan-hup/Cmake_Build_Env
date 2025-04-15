@@ -1,5 +1,5 @@
 #This is the command telling CMake to enforce a minimum version requirement.
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.20)
 
 
 #Define all the possible colors to be used Text colors and background colors 

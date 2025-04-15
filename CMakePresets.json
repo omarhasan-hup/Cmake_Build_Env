@@ -1,0 +1,34 @@
+{
+    "version": 3,
+    "configurePresets": [
+      {
+        "name": "debug",
+        "displayName": "Linux Debug",
+        "generator": "Unix Makefiles",
+        "binaryDir": "${sourceDir}/debug",
+        "cacheVariables": {
+          "CMAKE_BUILD_TYPE": "Debug"
+        }
+      },
+      {
+        "name": "release",
+        "displayName": "Linux Release",
+        "generator": "Unix Makefiles",
+        "binaryDir": "${sourceDir}/release",
+        "cacheVariables": {
+          "CMAKE_BUILD_TYPE": "Release"
+        }
+      },
+      {
+        "name": "windows-debug",
+        "displayName": "Windows Debug",
+        "generator": "Visual Studio 17 2022",
+        "binaryDir": "${sourceDir}/build/windows-debug",
+        "architecture": "x64",
+        "cacheVariables": {
+          "CMAKE_BUILD_TYPE": "Debug"
+        }
+      }
+    ]
+  }
+  
