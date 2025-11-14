@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'master', url: 'https://github.com/omarhasan-hup/Cmake_Build_Env'
+        git branch: 'jenkins_pipline_trial', url: 'https://github.com/omarhasan-hup/Cmake_Build_Env'
       }
     }
 
