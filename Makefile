@@ -127,16 +127,18 @@ Model_copy:
 	done
 	@echo "Copied .c and .h files from $(Model_SOURCE_DIR) to $(Model_DEST_DIR)"
 
-uint_test:
+uint_test: clean
 	@echo -e "$(MAGENTA)$(BOLD)navigate to build env directory to start the Cmake Build environment Generation for the uint test by excuating the CmakeLists \n $(RESET)"
 	@# Configure, build, and test all from within the build directory
 	@( \
 		cd $(DIR)/ && \
-		echo -e "Configuring for a native test build..." && \
-		cmake .. -DBUILD_TESTING=ON && \
-		echo -e "\nBuilding the test executables..." && \
-		cmake --build . --target SWC_one_tests && \
-		echo -e "\nRunning the tests..." && \
-		ctest --verbose \
-	) | tee -a $(Build_lgs)/Build_log.txt
+		( \
+			echo -e "Configuring for a native test build..." && \
+			cmake .. -DBUILD_TESTING=ON -DCMAKE_TOOLCHAIN_FILE="" && \
+			echo -e "\nBuilding the test executables..." && \
+			cmake --build . --target SWC_one_tests && \
+			echo -e "\nRunning the tests..." && \
+			ctest --verbose \
+		) \
+	) 2>&1 | tee -a $(Build_lgs)/Build_log.txt
 	@echo -e "$(GREEN)$(BOLD)Done with Unit Test Target🎉🎉\n $(RESET)"
