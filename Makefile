@@ -129,6 +129,7 @@ Model_copy:
 
 uint_test: clean
 	@echo -e "$(MAGENTA)$(BOLD)navigate to build env directory to start the Cmake Build environment Generation for the uint test by excuating the CmakeLists \n $(RESET)"
+	@mkdir -p $(mkfile_dir)/test_reports
 	@# Configure, build, and test all from within the build directory
 	@( \
 		cd $(DIR)/ && \
@@ -137,8 +138,10 @@ uint_test: clean
 			cmake .. -DBUILD_TESTING=ON -DCMAKE_TOOLCHAIN_FILE="" && \
 			echo -e "\nBuilding the test executables..." && \
 			cmake --build . --target SWC_one_tests && \
-			echo -e "\nRunning the tests..." && \
-			ctest --verbose \
+			echo -e "\nRunning the tests and generating JUnit XML report..." && \
+			ctest --verbose --output-junit "$(mkfile_dir)/test_reports/results.xml" \
 		) \
 	) 2>&1 | tee -a $(Build_lgs)/Build_log.txt
-	@echo -e "$(GREEN)$(BOLD)Done with Unit Test Target🎉🎉\n $(RESET)"
+	@echo -e "$(MAGENTA)$(BOLD)Generating HTML report from test results...\n $(RESET)"
+	@junit2html $(mkfile_dir)/test_reports/results.xml $(mkfile_dir)/test_reports/results.html || echo -e "$(RED)Failed to generate HTML report. Is junit2html installed? (pip install junit2html)$(RESET)"
+	@echo -e "$(GREEN)$(BOLD)Done with Unit Test Target🎉🎉 HTML report is available at test_reports/results.html\n $(RESET)"
