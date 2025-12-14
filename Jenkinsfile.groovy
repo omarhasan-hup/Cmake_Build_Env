@@ -1,24 +1,23 @@
 pipeline {
     agent any
 
+    environment {
+        // This prepends the path for all stages in the pipeline.
+        // It's the correct way to make tools like junit2html available everywhere.
+        PATH = "$HOME/.local/bin:${env.PATH}"
+    }
+
     stages {
-        stage('Checkout_With_push_event') {
-            steps {
-                git branch: 'jenkins_pipline_trial', url: 'https://github.com/omarhasan-hup/Cmake_Build_Env'
-            }
-        }
-        // In your Jenkinsfile
+        // The checkout is now handled by Jenkins automatically based on job configuration.
+        // This stage is for installing dependencies.
         stage('Setup Environment') {
             steps {
                 echo 'Installing Python dependencies...'
                 // Install the package to the user's local directory
                 sh 'pip3 install --user junit2html'
-
-                echo 'Adding local bin to PATH...'
-                // Add the install location to the PATH for subsequent stages
-                // Note: The path might vary slightly based on the agent's OS/user setup
-                sh 'export PATH="$HOME/.local/bin:$PATH"'
-                sh 'source ~/.bashrc'
+                // Verify the installation
+                echo "Verifying junit2html installation..."
+                sh 'which junit2html'
             }
         }
 
@@ -29,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Build_The project on the target brnach') {
+        stage('Build Project') {
             steps {
                 echo 'Starting embedded build...'
                 sh 'make full_build '  // or whatever script compiles your firmware
