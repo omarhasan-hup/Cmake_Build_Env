@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="(empty)"
+	tests="3"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname=""
+	time="0"
+	timestamp="2025-12-14T03:39:28"
+	>
+	<testcase name="SWC_one_tests" classname="SWC_one_tests" time="0.0007377" status="run">
+		<properties/>
+		<system-out>Running test: test_set_port_initial_state
+... PASSED
+Running test: test_set_port_rollover
+... PASSED
+All tests passed!
+</system-out>
+	</testcase>
+	<testcase name="SWCTwoTest.SetPortTwoSetsDDRCToOutput" classname="SWCTwoTest.SetPortTwoSetsDDRCToOutput" time="0.0011178" status="run">
+		<properties/>
+		<system-out>Running main() from /home/oshawky/cplus_repo_jenk/Cmake_Build_Env/build_env/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SWCTwoTest.SetPortTwoSetsDDRCToOutput
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SWCTwoTest
+[ RUN      ] SWCTwoTest.SetPortTwoSetsDDRCToOutput
+[       OK ] SWCTwoTest.SetPortTwoSetsDDRCToOutput (0 ms)
+[----------] 1 test from SWCTwoTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</system-out>
+	</testcase>
+	<testcase name="SWCThreeTest.SetPortTreePrintsCorrectMessage" classname="SWCThreeTest.SetPortTreePrintsCorrectMessage" time="0.0011831" status="run">
+		<properties/>
+		<system-out>Running main() from /home/oshawky/cplus_repo_jenk/Cmake_Build_Env/build_env/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SWCThreeTest.SetPortTreePrintsCorrectMessage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SWCThreeTest
+[ RUN      ] SWCThreeTest.SetPortTreePrintsCorrectMessage
+[       OK ] SWCThreeTest.SetPortTreePrintsCorrectMessage (0 ms)
+[----------] 1 test from SWCThreeTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</system-out>
+	</testcase>
+</testsuite>
