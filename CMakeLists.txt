@@ -40,14 +40,27 @@ project(cmake_project )
 # Inluce the .cmake file named "swc_paths.cmake" which will have all the relative paths will be used in the Cmake generation 
 include(swc_paths.cmake)
 
+
 option(BUILD_TESTING "Build the unit tests" OFF)
 
 if(BUILD_TESTING)
     message(STATUS "Unit test build is enabled.")
     # Enable testing framework
     enable_testing()
-    # Add the subdirectory that contains the test definitions
+
+    # Use FetchContent to download and build Google Test
+    include(FetchContent)
+    FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG main
+    )
+    FetchContent_MakeAvailable(googletest)
+    enable_testing()
     add_subdirectory(${SWC_one}/testing)
+    add_subdirectory(${SWC_two}/testing)
+    add_subdirectory(${SWC_three}/testing)
+
 else()
     message(STATUS "AVR cross-compilation build is enabled.")
     # Include the toolchain file
