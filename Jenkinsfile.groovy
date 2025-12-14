@@ -25,7 +25,11 @@ pipeline {
         stage('Cleanup Workspace') {
             steps {
                 echo 'Cleaning up the git workspace...'
-                sh 'git-sweep -f' // Assuming git-sweep is installed and in the agent's PATH
+                sh '''
+                . /var/lib/jenkins/.gitrc
+                git-sweep -f
+                ''' 
+                // Assuming git-sweep is installed and in the agent's PATH
             }
         }
 
