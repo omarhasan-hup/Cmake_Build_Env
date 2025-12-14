@@ -137,7 +137,7 @@ uint_test: clean
 			echo -e "Configuring for a native test build..." && \
 			cmake .. -DBUILD_TESTING=ON -DCMAKE_TOOLCHAIN_FILE="" && \
 			echo -e "\nBuilding the test executables..." && \
-			cmake --build . --target SWC_one_tests && \
+			cmake --build . && \
 			echo -e "\nRunning the tests and generating JUnit XML report..." && \
 			ctest --verbose --output-junit "$(mkfile_dir)/test_reports/results.xml" \
 		) \
