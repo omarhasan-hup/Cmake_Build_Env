@@ -18,6 +18,7 @@ pipeline {
                 // Verify the installation
                 echo "Verifying junit2html installation..."
                 sh 'which junit2html'
+                sh 'whoami'
             }
         }
 
